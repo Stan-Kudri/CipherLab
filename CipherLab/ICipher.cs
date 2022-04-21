@@ -2,8 +2,8 @@
 {
     interface ICipher
     {
-        public string Encoder(string encoderStr);
+        public string Encode(string encodeStr);
 
-        public string Decoder(string decoderStr);
+        public string Decode(string decodeStr);
     }
 }

@@ -33,14 +33,14 @@ foreach (char c in strSlowLetters.ToArray())
 string str = "А Н Г У С Ю Я";
 var aCipher = new ACipher();
 Console.WriteLine(str);
-var encoderStr = aCipher.Encoder(str);
+var encoderStr = aCipher.Encode(str);
 Console.WriteLine(encoderStr);
-var decoderStr = aCipher.Decoder(encoderStr);
+var decoderStr = aCipher.Decode(encoderStr);
 Console.WriteLine(decoderStr);
 
 Console.WriteLine();
 var bCipher = new BCipher();
-var encoderStrB = bCipher.Encoder(str);
+var encoderStrB = bCipher.Encode(str);
 Console.WriteLine(encoderStrB);
-var decoderStrB = bCipher.Decoder(encoderStrB);
+var decoderStrB = bCipher.Decode(encoderStrB);
 Console.WriteLine(decoderStrB);

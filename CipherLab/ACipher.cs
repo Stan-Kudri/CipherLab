@@ -12,10 +12,10 @@
 
         }
 
-        public string Decoder(string decoderStr)
+        public string Decode(string decodeStr)
         {
-            var arrayStr = decoderStr.ToCharArray();
-            for (var i = 0; i < decoderStr.Length; i++)
+            var arrayStr = decodeStr.ToCharArray();
+            for (var i = 0; i < decodeStr.Length; i++)
             {
                 if (arrayStr[i] == 1040)
                 {
@@ -34,10 +34,10 @@
             return new string(arrayStr);
         }
 
-        public string Encoder(string encoderStr)
+        public string Encode(string encodeStr)
         {
-            var arrayStr = encoderStr.ToCharArray();
-            for (var i = 0; i < encoderStr.Length; i++)
+            var arrayStr = encodeStr.ToCharArray();
+            for (var i = 0; i < encodeStr.Length; i++)
             {
                 if (arrayStr[i] == 1071)
                 {

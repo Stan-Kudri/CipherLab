@@ -13,32 +13,32 @@
 
         }
 
-        public string Decoder(string decoderStr)
+        public string Decode(string decodeStr)
         {
-            return Encoder(decoderStr);
+            return Encode(decodeStr);
         }
 
-        public string Encoder(string encoderStr)
+        public string Encode(string encodeStr)
         {
-            var arrayStr = encoderStr.ToCharArray();
-            for (var i = 0; i < encoderStr.Length; i++)
+            var arrayStr = encodeStr.ToCharArray();
+            for (var i = 0; i < encodeStr.Length; i++)
             {
                 if (arrayStr[i] >= 1040 && arrayStr[i] <= 1103)
                 {
-                    if (char.IsLower(encoderStr[i]))
+                    if (char.IsLower(encodeStr[i]))
                     {
-                        arrayStr[i] = EncoderCharIsLetter(arrayStr[i], 1072, 1103);
+                        arrayStr[i] = CodingLetter(arrayStr[i], 1072, 1103);
                     }
-                    else if (char.IsUpper(encoderStr[i]))
+                    else if (char.IsUpper(encodeStr[i]))
                     {
-                        arrayStr[i] = EncoderCharIsLetter(arrayStr[i], 1040, 1071);
+                        arrayStr[i] = CodingLetter(arrayStr[i], 1040, 1071);
                     }
                 }
             }
             return new string(arrayStr);
         }
 
-        private char EncoderCharIsLetter(char letter, int a, int b)
+        private char CodingLetter(char letter, int a, int b)
         {
             if (letter == a)
                 return Convert.ToChar(b);
@@ -46,7 +46,7 @@
                 return Convert.ToChar(a);
             else
             {
-                if (letter - a < 16)
+                if (letter - a < (b - a) / 2)
                 {
                     return Convert.ToChar(b - (letter - a));
                 }
