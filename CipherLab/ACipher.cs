@@ -7,25 +7,26 @@
      */
     public class ACipher : ICipher
     {
-        public ACipher()
-        {
+        private const int startIndexBigLatter = 1040;
+        private const int endIndexBigLatter = 1071;
 
-        }
+        private const int startIndexSmallLatter = 1072;
+        private const int endIndexSmallLatter = 1103;
 
         public string Decode(string decodeStr)
         {
             var arrayStr = decodeStr.ToCharArray();
             for (var i = 0; i < decodeStr.Length; i++)
             {
-                if (arrayStr[i] == 1040)
+                if (arrayStr[i] == startIndexBigLatter)
                 {
-                    arrayStr[i] = Convert.ToChar(1071);
+                    arrayStr[i] = Convert.ToChar(endIndexBigLatter);
                 }
-                else if (arrayStr[i] == 1072)
+                else if (arrayStr[i] == startIndexSmallLatter)
                 {
-                    arrayStr[i] = Convert.ToChar(1103);
+                    arrayStr[i] = Convert.ToChar(endIndexSmallLatter);
                 }
-                else if (arrayStr[i] >= 1040 && arrayStr[i] <= 1103)
+                else if (arrayStr[i] >= startIndexBigLatter && arrayStr[i] <= endIndexSmallLatter)
                 {
                     var number = arrayStr[i] - 1;
                     arrayStr[i] = Convert.ToChar(number);
@@ -39,15 +40,15 @@
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
-                if (arrayStr[i] == 1071)
+                if (arrayStr[i] == endIndexBigLatter)
                 {
-                    arrayStr[i] = Convert.ToChar(1040);
+                    arrayStr[i] = Convert.ToChar(startIndexBigLatter);
                 }
-                else if (arrayStr[i] == 1103)
+                else if (arrayStr[i] == endIndexSmallLatter)
                 {
-                    arrayStr[i] = Convert.ToChar(1072);
+                    arrayStr[i] = Convert.ToChar(startIndexSmallLatter);
                 }
-                else if (arrayStr[i] >= 1040 && arrayStr[i] <= 1103)
+                else if (arrayStr[i] >= startIndexBigLatter && arrayStr[i] <= endIndexSmallLatter)
                 {
                     var number = arrayStr[i] + 1;
                     arrayStr[i] = Convert.ToChar(number);

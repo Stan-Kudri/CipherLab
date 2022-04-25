@@ -8,10 +8,11 @@
      */
     public class BCipher : ICipher
     {
-        public BCipher()
-        {
+        private const int startIndexBigLatter = 1040;
+        private const int endIndexBigLatter = 1071;
 
-        }
+        private const int startIndexSmallLatter = 1072;
+        private const int endIndexSmallLatter = 1103;
 
         public string Decode(string decodeStr)
         {
@@ -23,22 +24,22 @@
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
-                if (arrayStr[i] >= 1040 && arrayStr[i] <= 1103)
+                if (arrayStr[i] >= startIndexBigLatter && arrayStr[i] <= endIndexSmallLatter)
                 {
                     if (char.IsLower(encodeStr[i]))
                     {
-                        arrayStr[i] = CodingLetter(arrayStr[i], 1072, 1103);
+                        arrayStr[i] = EncryptionLetter(arrayStr[i], startIndexSmallLatter, endIndexSmallLatter);
                     }
                     else if (char.IsUpper(encodeStr[i]))
                     {
-                        arrayStr[i] = CodingLetter(arrayStr[i], 1040, 1071);
+                        arrayStr[i] = EncryptionLetter(arrayStr[i], startIndexBigLatter, endIndexBigLatter);
                     }
                 }
             }
             return new string(arrayStr);
         }
 
-        private char CodingLetter(char letter, int a, int b)
+        private char EncryptionLetter(char letter, int a, int b)
         {
             if (letter == a)
                 return Convert.ToChar(b);
@@ -46,7 +47,8 @@
                 return Convert.ToChar(a);
             else
             {
-                if (letter - a < (b - a) / 2)
+                var midSpacingLetters = (b - a) / 2;
+                if (letter - a < midSpacingLetters)
                 {
                     return Convert.ToChar(b - (letter - a));
                 }
