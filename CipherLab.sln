@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32127.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CipherLab", "CipherLab\CipherLab.csproj", "{DB87C54D-FE76-4336-8CFB-C05AB9528AA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CipherLab", "CipherLab\CipherLab.csproj", "{DB87C54D-FE76-4336-8CFB-C05AB9528AA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCipher", "TestCipher\TestCipher.csproj", "{7BF55AC4-12EC-4FDB-B5CE-56F2B3053C06}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DB87C54D-FE76-4336-8CFB-C05AB9528AA2} = {DB87C54D-FE76-4336-8CFB-C05AB9528AA2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{DB87C54D-FE76-4336-8CFB-C05AB9528AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB87C54D-FE76-4336-8CFB-C05AB9528AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB87C54D-FE76-4336-8CFB-C05AB9528AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF55AC4-12EC-4FDB-B5CE-56F2B3053C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF55AC4-12EC-4FDB-B5CE-56F2B3053C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF55AC4-12EC-4FDB-B5CE-56F2B3053C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF55AC4-12EC-4FDB-B5CE-56F2B3053C06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
