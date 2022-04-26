@@ -9,7 +9,7 @@ namespace TestCipher
         [InlineData("АбвГ ДД", "ЯюэЬ ЫЫ")]
         [InlineData("Бак", "Юях")]
         [InlineData("АЛЛА", "ЯФФЯ")]
-        public void Perform_encryption(string str, string expectStr)
+        public void Encode(string str, string expectStr)
         {
             var encryptionStr = new BCipher().Encode(str);
             Assert.Equal(expectStr, encryptionStr);
@@ -19,7 +19,7 @@ namespace TestCipher
         [InlineData("ЯюэЬ ЫЫ", "АбвГ ДД")]
         [InlineData("Юях", "Бак")]
         [InlineData("ЯХХЯ", "АККА")]
-        public void Performing_decryption(string str, string expectStr)
+        public void Decode(string str, string expectStr)
         {
             var decryptionStr = new BCipher().Decode(str);
             Assert.Equal(expectStr, decryptionStr);
@@ -29,7 +29,7 @@ namespace TestCipher
         [InlineData("МалаКОЛД")]
         [InlineData("Юях")]
         [InlineData("ЯХХЯ")]
-        public void Perform_encryption_with_decryption(string expectStr)
+        public void Encode_Then_Decode(string expectStr)
         {
             var encryptionStr = new BCipher().Decode(expectStr);
             var decryptionStr = new BCipher().Encode(encryptionStr);
