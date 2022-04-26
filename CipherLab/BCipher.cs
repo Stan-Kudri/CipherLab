@@ -21,6 +21,7 @@
 
         public string Encode(string encodeStr)
         {
+            CheckStrFormat(encodeStr);
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
@@ -57,6 +58,13 @@
                     return Convert.ToChar(a + (b - letter));
                 }
             }
+        }
+        private void CheckStrFormat(string str)
+        {
+            if (str == null)
+                throw new NullReferenceException("Строка нулевая!");
+            if (str.Length == 0)
+                throw new ArgumentException("Строка не верна!");
         }
     }
 }

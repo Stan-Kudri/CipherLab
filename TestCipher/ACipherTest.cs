@@ -1,4 +1,5 @@
 using CipherLab;
+using System;
 using Xunit;
 
 namespace TestCipher
@@ -6,9 +7,11 @@ namespace TestCipher
     public class ACipherTest
     {
         [Theory]
-        [InlineData("јвЅг≈ƒжз»йкЋћ", "Ѕг¬д∆≈зи…клћЌ")]
+        [InlineData(" рот", "Ћспу")]
         [InlineData("ћама", "Ќбнб")]
-        [InlineData("ѕо ро-ро", "–п сп-сп")]
+        [InlineData("ѕо-ро-ро", "–п-сп-сп")]
+        [InlineData("Ѕур€, дождь и мгла...!!!", "¬фса, епзеэ й ндмб...!!!")]
+        [InlineData("--==--:::::ј", "--==--:::::Ѕ")]
         public void Encode(string str, string expectStr)
         {
             var encryptionStr = new ACipher().Encode(str);
@@ -16,9 +19,11 @@ namespace TestCipher
         }
 
         [Theory]
-        [InlineData("Ѕг¬д∆≈зи…клћЌ", "јвЅг≈ƒжз»йкЋћ")]
+        [InlineData("Ћспу", " рот")]
         [InlineData("Ќбнб", "ћама")]
-        [InlineData("–п сп-сп", "ѕо ро-ро")]
+        [InlineData("–п-сп-сп", "ѕо-ро-ро")]
+        [InlineData("¬фса, епзеэ й ндмб...!!!", "Ѕур€, дождь и мгла...!!!")]
+        [InlineData("--==--:::::Ѕ", "--==--:::::ј")]
         public void Decode(string str, string expectStr)
         {
             var decryptionStr = new ACipher().Decode(str);
@@ -26,14 +31,33 @@ namespace TestCipher
         }
 
         [Theory]
-        [InlineData("ћала ќЋƒ")]
-        [InlineData("ё€х")]
-        [InlineData("я’’я")]
+        [InlineData("ћалахит")]
+        [InlineData(" ровл€ + „ерепица =  рыша?")]
+        [InlineData("яхта, море и песок, то что нужно......")]
+        [InlineData("--==--::::: ол")]
         public void Encode_Then_Decode(string expectStr)
         {
             var encryptionStr = new ACipher().Decode(expectStr);
             var decryptionStr = new ACipher().Encode(encryptionStr);
             Assert.Equal(expectStr, decryptionStr);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        public void Null_String_Coder(string nullStr)
+        {
+            var coder = new ACipher();
+
+            Assert.Throws<NullReferenceException>(() => coder.Encode(nullStr));
+        }
+
+        [Theory]
+        [InlineData("")]
+        public void Empty_String_Coder(string nullStr)
+        {
+            var coder = new ACipher();
+
+            Assert.Throws<ArgumentException>(() => coder.Encode(nullStr));
         }
     }
 }

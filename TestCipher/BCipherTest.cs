@@ -1,4 +1,5 @@
 ﻿using CipherLab;
+using System;
 using Xunit;
 
 namespace TestCipher
@@ -6,34 +7,64 @@ namespace TestCipher
     public class BCipherTest
     {
         [Theory]
-        [InlineData("АбвГ ДД", "ЯюэЬ ЫЫ")]
-        [InlineData("Бак", "Юях")]
-        [InlineData("АЛЛА", "ЯФФЯ")]
+        [InlineData("Мама+Папа", "Уяуя+Ряря")]
+        [InlineData("Банка", "Юятхя")]
+        [InlineData("Атака-кота", "Яняхя-хсня")]
+        [InlineData("--==--:::::А", "--==--:::::Я")]
         public void Encode(string str, string expectStr)
         {
-            var encryptionStr = new BCipher().Encode(str);
+            var encryption = new BCipher();
+
+            var encryptionStr = encryption.Encode(str);
+
             Assert.Equal(expectStr, encryptionStr);
         }
 
         [Theory]
-        [InlineData("ЯюэЬ ЫЫ", "АбвГ ДД")]
-        [InlineData("Юях", "Бак")]
-        [InlineData("ЯХХЯ", "АККА")]
+        [InlineData("Уяуя+Ряря", "Мама+Папа")]
+        [InlineData("Юятхя", "Банка")]
+        [InlineData("Яняхя-хсня", "Атака-кота")]
+        [InlineData("--==--:::::А", "--==--:::::Я")]
         public void Decode(string str, string expectStr)
         {
-            var decryptionStr = new BCipher().Decode(str);
+            var decryption = new BCipher();
+
+            var decryptionStr = decryption.Decode(str);
+
             Assert.Equal(expectStr, decryptionStr);
         }
 
         [Theory]
-        [InlineData("МалаКОЛД")]
-        [InlineData("Юях")]
-        [InlineData("ЯХХЯ")]
+        [InlineData("Малахит")]
+        [InlineData("Кровля + Черепица = Крыша?")]
+        [InlineData("Яхта, море и песок, то что нужно......")]
+        [InlineData("--==--:::::Говорун_ГО-ГО")]
         public void Encode_Then_Decode(string expectStr)
         {
-            var encryptionStr = new BCipher().Decode(expectStr);
-            var decryptionStr = new BCipher().Encode(encryptionStr);
+            var coder = new BCipher();
+
+            var encryptionStr = coder.Encode(expectStr);
+            var decryptionStr = coder.Decode(encryptionStr);
+
             Assert.Equal(expectStr, decryptionStr);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        public void Null_String_Coder(string nullStr)
+        {
+            var coder = new BCipher();
+
+            Assert.Throws<NullReferenceException>(() => coder.Encode(nullStr));
+        }
+
+        [Theory]
+        [InlineData("")]
+        public void Empty_String_Coder(string nullStr)
+        {
+            var coder = new ACipher();
+
+            Assert.Throws<ArgumentException>(() => coder.Encode(nullStr));
         }
     }
 }

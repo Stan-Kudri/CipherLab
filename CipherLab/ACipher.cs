@@ -15,6 +15,7 @@
 
         public string Decode(string decodeStr)
         {
+            CheckStrFormat(decodeStr);
             var arrayStr = decodeStr.ToCharArray();
             for (var i = 0; i < decodeStr.Length; i++)
             {
@@ -37,6 +38,7 @@
 
         public string Encode(string encodeStr)
         {
+            CheckStrFormat(encodeStr);
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
@@ -55,6 +57,14 @@
                 }
             }
             return new string(arrayStr);
+        }
+
+        private void CheckStrFormat(string str)
+        {
+            if (str == null)
+                throw new NullReferenceException("Строка нулевая!");
+            if (str.Length == 0)
+                throw new ArgumentException("Строка не верна!");
         }
     }
 }
