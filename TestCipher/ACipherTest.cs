@@ -33,8 +33,8 @@ namespace TestCipher
         [Theory]
         [InlineData("Малахит")]
         [InlineData("Кровля + Черепица = Крыша?")]
-        [InlineData("Яхта, море и песок, то что нужно......")]
-        [InlineData("--==--:::::Кол")]
+        [InlineData("Яхта, море и песок, то что нужно мне тут.....")]
+        [InlineData("--==--::::::Кол!")]
         public void Encode_Then_Decode(string expectStr)
         {
             var encryptionStr = new ACipher().Decode(expectStr);
