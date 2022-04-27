@@ -9,7 +9,7 @@ namespace TestCipher
         [Theory]
         [InlineData("Крот", "Лспу")]
         [InlineData("Мама", "Нбнб")]
-        [InlineData("По-ро-ро", "Рп-сп-сп")]
+        [InlineData("По-ро-ро!", "Рп-сп-сп!")]
         [InlineData("Буря, дождь и мгла...!!!", "Вфса, епзеэ й ндмб...!!!")]
         [InlineData("--==--:::::А", "--==--:::::Б")]
         public void Encode(string str, string expectStr)
