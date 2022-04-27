@@ -1,4 +1,4 @@
-using CipherLab;
+п»їusing CipherLab;
 using System;
 using Xunit;
 
@@ -7,11 +7,11 @@ namespace TestCipher
     public class ACipherTest
     {
         [Theory]
-        [InlineData("Крот", "Лспу")]
-        [InlineData("Мама", "Нбнб")]
-        [InlineData("По-ро-ро!", "Рп-сп-сп!")]
-        [InlineData("Буря, дождь и мгла...!!!", "Вфса, епзеэ й ндмб...!!!")]
-        [InlineData("--==--:::::А", "--==--:::::Б")]
+        [InlineData("РљСЂРѕС‚", "Р›СЃРїСѓ")]
+        [InlineData("РњР°РјР°", "РќР±РЅР±")]
+        [InlineData("РџРѕ-СЂРѕ-СЂРѕ!", "Р Рї-СЃРї-СЃРї!")]
+        [InlineData("Р‘СѓСЂСЏ, РґРѕР¶РґСЊ Рё РјРіР»Р°...!!!", "Р’С„СЃР°, РµРїР·РµСЌ Р№ РЅРґРјР±...!!!")]
+        [InlineData("--==--:::::Рђ", "--==--:::::Р‘")]
         public void Encode(string str, string expectStr)
         {
             var encryptionStr = new ACipher().Encode(str);
@@ -19,11 +19,11 @@ namespace TestCipher
         }
 
         [Theory]
-        [InlineData("Лспу", "Крот")]
-        [InlineData("Нбнб", "Мама")]
-        [InlineData("Рп-сп-сп", "По-ро-ро")]
-        [InlineData("Вфса, епзеэ й ндмб...!!!", "Буря, дождь и мгла...!!!")]
-        [InlineData("--==--:::::Б", "--==--:::::А")]
+        [InlineData("Р›СЃРїСѓ", "РљСЂРѕС‚")]
+        [InlineData("РќР±РЅР±", "РњР°РјР°")]
+        [InlineData("Р Рї-СЃРї-СЃРї", "РџРѕ-СЂРѕ-СЂРѕ")]
+        [InlineData("Р’С„СЃР°, РµРїР·РµСЌ Р№ РЅРґРјР±...!!!", "Р‘СѓСЂСЏ, РґРѕР¶РґСЊ Рё РјРіР»Р°...!!!")]
+        [InlineData("--==--:::::Р‘", "--==--:::::Рђ")]
         public void Decode(string str, string expectStr)
         {
             var decryptionStr = new ACipher().Decode(str);
@@ -31,10 +31,10 @@ namespace TestCipher
         }
 
         [Theory]
-        [InlineData("Малахит")]
-        [InlineData("Кровля + Черепица = Крыша?")]
-        [InlineData("Яхта, море и песок, то что нужно мне тут.....")]
-        [InlineData("--==--::::::Кол!")]
+        [InlineData("РњР°Р»Р°С…РёС‚")]
+        [InlineData("РљСЂРѕРІР»СЏ + Р§РµСЂРµРїРёС†Р° = РљСЂС‹С€Р°?")]
+        [InlineData("РЇС…С‚Р°, РјРѕСЂРµ Рё РїРµСЃРѕРє, С‚Рѕ С‡С‚Рѕ РЅСѓР¶РЅРѕ РјРЅРµ С‚СѓС‚.....")]
+        [InlineData("--==--::::::РљРѕР»!")]
         public void Encode_Then_Decode(string expectStr)
         {
             var encryptionStr = new ACipher().Decode(expectStr);
