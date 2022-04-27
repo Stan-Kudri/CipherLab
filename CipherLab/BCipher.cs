@@ -8,11 +8,11 @@
      */
     public class BCipher : ICipher
     {
-        private const int StartIndexBigLatter = 1040;
-        private const int EndIndexBigLatter = 1071;
+        private const int StartBigLetter = 1040;
+        private const int EndBigLetter = 1071;
 
-        private const int StartIndexSmallLatter = 1072;
-        private const int EndIndexSmallLatter = 1103;
+        private const int StartSmallLetter = 1072;
+        private const int EndSmallLetter = 1103;
 
         public string Decode(string decodeStr)
         {
@@ -21,19 +21,22 @@
 
         public string Encode(string encodeStr)
         {
-            CheckStrFormat(encodeStr);
+            if (encodeStr == null)
+                throw new ArgumentNullException("Строка нулевая!");
+            if (encodeStr.Length == 0)
+                throw new ArgumentException("Строка не верна!");
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
-                if (arrayStr[i] >= StartIndexBigLatter && arrayStr[i] <= EndIndexSmallLatter)
+                if (arrayStr[i] >= (int)StartBigLetter && arrayStr[i] <= (int)EndSmallLetter)
                 {
                     if (char.IsLower(encodeStr[i]))
                     {
-                        arrayStr[i] = EncryptionLetter(arrayStr[i], StartIndexSmallLatter, EndIndexSmallLatter);
+                        arrayStr[i] = EncryptionLetter(arrayStr[i], StartSmallLetter, EndSmallLetter);
                     }
                     else if (char.IsUpper(encodeStr[i]))
                     {
-                        arrayStr[i] = EncryptionLetter(arrayStr[i], StartIndexBigLatter, EndIndexBigLatter);
+                        arrayStr[i] = EncryptionLetter(arrayStr[i], StartBigLetter, EndBigLetter);
                     }
                 }
             }
@@ -42,9 +45,9 @@
 
         private char EncryptionLetter(char letter, int a, int b)
         {
-            if (letter == a)
+            if (letter == (char)a)
                 return Convert.ToChar(b);
-            else if (letter == b)
+            else if (letter == (char)b)
                 return Convert.ToChar(a);
             else
             {
@@ -58,13 +61,6 @@
                     return Convert.ToChar(a + (b - letter));
                 }
             }
-        }
-        private void CheckStrFormat(string str)
-        {
-            if (str == null)
-                throw new NullReferenceException("Строка нулевая!");
-            if (str.Length == 0)
-                throw new ArgumentException("Строка не верна!");
         }
     }
 }

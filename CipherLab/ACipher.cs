@@ -7,27 +7,30 @@
      */
     public class ACipher : ICipher
     {
-        private const int StartIndexBigLatter = 1040;
-        private const int EndIndexBigLatter = 1071;
+        private const int StartBigLetter = 1040;
+        private const int EndBigLetter = 1071;
 
-        private const int StartIndexSmallLatter = 1072;
-        private const int EndIndexSmallLatter = 1103;
+        private const int StartSmallLetter = 1072;
+        private const int EndSmallLetter = 1103;
 
         public string Decode(string decodeStr)
         {
-            CheckStrFormat(decodeStr);
+            if (decodeStr == null)
+                throw new ArgumentNullException("Строка нулевая!");
+            if (decodeStr.Length == 0)
+                throw new ArgumentException("Строка не верна!");
             var arrayStr = decodeStr.ToCharArray();
             for (var i = 0; i < decodeStr.Length; i++)
             {
-                if (arrayStr[i] == StartIndexBigLatter)
+                if (arrayStr[i] == (char)StartBigLetter)
                 {
-                    arrayStr[i] = Convert.ToChar(EndIndexBigLatter);
+                    arrayStr[i] = Convert.ToChar(EndBigLetter);
                 }
-                else if (arrayStr[i] == StartIndexSmallLatter)
+                else if (arrayStr[i] == (char)StartSmallLetter)
                 {
-                    arrayStr[i] = Convert.ToChar(EndIndexSmallLatter);
+                    arrayStr[i] = Convert.ToChar(EndSmallLetter);
                 }
-                else if (arrayStr[i] >= StartIndexBigLatter && arrayStr[i] <= EndIndexSmallLatter)
+                else if (arrayStr[i] >= (int)StartBigLetter && arrayStr[i] <= (int)EndSmallLetter)
                 {
                     var number = arrayStr[i] - 1;
                     arrayStr[i] = Convert.ToChar(number);
@@ -38,33 +41,28 @@
 
         public string Encode(string encodeStr)
         {
-            CheckStrFormat(encodeStr);
+            if (encodeStr == null)
+                throw new ArgumentNullException("Строка нулевая!");
+            if (encodeStr.Length == 0)
+                throw new ArgumentException("Строка не верна!");
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
-                if (arrayStr[i] == EndIndexBigLatter)
+                if (arrayStr[i] == (char)EndBigLetter)
                 {
-                    arrayStr[i] = Convert.ToChar(StartIndexBigLatter);
+                    arrayStr[i] = Convert.ToChar(StartBigLetter);
                 }
-                else if (arrayStr[i] == EndIndexSmallLatter)
+                else if (arrayStr[i] == (char)EndSmallLetter)
                 {
-                    arrayStr[i] = Convert.ToChar(StartIndexSmallLatter);
+                    arrayStr[i] = Convert.ToChar(StartSmallLetter);
                 }
-                else if (arrayStr[i] >= StartIndexBigLatter && arrayStr[i] <= EndIndexSmallLatter)
+                else if (arrayStr[i] >= (char)StartBigLetter && arrayStr[i] <= (char)EndSmallLetter)
                 {
                     var number = arrayStr[i] + 1;
                     arrayStr[i] = Convert.ToChar(number);
                 }
             }
             return new string(arrayStr);
-        }
-
-        private void CheckStrFormat(string str)
-        {
-            if (str == null)
-                throw new NullReferenceException("Строка нулевая!");
-            if (str.Length == 0)
-                throw new ArgumentException("Строка не верна!");
         }
     }
 }

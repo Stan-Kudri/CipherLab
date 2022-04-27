@@ -55,7 +55,7 @@ namespace TestCipher
         {
             var coder = new BCipher();
 
-            Assert.Throws<NullReferenceException>(() => coder.Encode(nullStr));
+            Assert.Throws<ArgumentNullException>(() => coder.Encode(nullStr));
         }
 
         [Theory]

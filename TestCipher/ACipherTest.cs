@@ -48,7 +48,7 @@ namespace TestCipher
         {
             var coder = new ACipher();
 
-            Assert.Throws<NullReferenceException>(() => coder.Encode(nullStr));
+            Assert.Throws<ArgumentNullException>(() => coder.Encode(nullStr));
         }
 
         [Theory]
