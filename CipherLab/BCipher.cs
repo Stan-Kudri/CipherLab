@@ -8,11 +8,11 @@
      */
     public class BCipher : ICipher
     {
-        private const int StartBigLetter = 1040;
-        private const int EndBigLetter = 1071;
+        private const int StartBigLetter = 'А';
+        private const int EndBigLetter = 'Я';
 
-        private const int StartSmallLetter = 1072;
-        private const int EndSmallLetter = 1103;
+        private const int StartSmallLetter = 'а';
+        private const int EndSmallLetter = 'я';
 
         public string Decode(string decodeStr)
         {
@@ -28,7 +28,7 @@
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
-                if (arrayStr[i] >= (int)StartBigLetter && arrayStr[i] <= (int)EndSmallLetter)
+                if (arrayStr[i] >= StartBigLetter && arrayStr[i] <= EndSmallLetter)
                 {
                     if (char.IsLower(encodeStr[i]))
                     {

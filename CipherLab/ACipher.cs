@@ -7,11 +7,11 @@
      */
     public class ACipher : ICipher
     {
-        private const int StartBigLetter = 1040;
-        private const int EndBigLetter = 1071;
+        private const int StartBigLetter = 'А';
+        private const int EndBigLetter = 'Я';
 
-        private const int StartSmallLetter = 1072;
-        private const int EndSmallLetter = 1103;
+        private const int StartSmallLetter = 'а';
+        private const int EndSmallLetter = 'я';
 
         public string Decode(string decodeStr)
         {
@@ -30,7 +30,7 @@
                 {
                     arrayStr[i] = Convert.ToChar(EndSmallLetter);
                 }
-                else if (arrayStr[i] >= (int)StartBigLetter && arrayStr[i] <= (int)EndSmallLetter)
+                else if (arrayStr[i] >= StartBigLetter && arrayStr[i] <= EndSmallLetter)
                 {
                     var number = arrayStr[i] - 1;
                     arrayStr[i] = Convert.ToChar(number);
@@ -56,7 +56,7 @@
                 {
                     arrayStr[i] = Convert.ToChar(StartSmallLetter);
                 }
-                else if (arrayStr[i] >= (char)StartBigLetter && arrayStr[i] <= (char)EndSmallLetter)
+                else if (arrayStr[i] >= StartBigLetter && arrayStr[i] <= EndSmallLetter)
                 {
                     var number = arrayStr[i] + 1;
                     arrayStr[i] = Convert.ToChar(number);
