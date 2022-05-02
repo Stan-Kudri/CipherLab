@@ -6,7 +6,7 @@
     букву того же регистра, расположенную в алфавите на i-й позиции с конца 
     алфавита. Например, буква В заменяется на букву Э.
      */
-    public class BCipher : ICipher
+    public class LettersReverseCipher : ICipher
     {
         private const int StartBigLetter = 'А';
         private const int EndBigLetter = 'Я';

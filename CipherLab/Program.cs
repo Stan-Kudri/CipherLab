@@ -31,7 +31,7 @@ foreach (char c in strSlowLetters.ToArray())
 }
 
 string str = "А Н Г У С Ю Я";
-var aCipher = new ACipher();
+var aCipher = new NextLetterCipher();
 Console.WriteLine(str);
 var encoderStr = aCipher.Encode(str);
 Console.WriteLine(encoderStr);
@@ -39,7 +39,7 @@ var decoderStr = aCipher.Decode(encoderStr);
 Console.WriteLine(decoderStr);
 
 Console.WriteLine();
-var bCipher = new BCipher();
+var bCipher = new LettersReverseCipher();
 var encoderStrB = bCipher.Encode(str);
 Console.WriteLine(encoderStrB);
 var decoderStrB = bCipher.Decode(encoderStrB);

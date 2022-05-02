@@ -5,7 +5,7 @@
     строку посредством сдвига каждого символа на одну «алфавитную» позицию 
     выше. Например, в результате такого сдвига буква А становится буквой Б. 
      */
-    public class ACipher : ICipher
+    public class NextLetterCipher : ICipher
     {
         private const int StartBigLetter = 'А';
         private const int EndBigLetter = 'Я';

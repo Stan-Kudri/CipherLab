@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TestCipher
 {
-    public class BCipherTest
+    public class LettersReverseCipherTest
     {
         [Theory]
         [InlineData("Мама+Папа", "Уяуя+Ряря")]
@@ -13,7 +13,7 @@ namespace TestCipher
         [InlineData("--==--:::::А", "--==--:::::Я")]
         public void Encode(string str, string expectStr)
         {
-            var encryption = new BCipher();
+            var encryption = new LettersReverseCipher();
 
             var encryptionStr = encryption.Encode(str);
 
@@ -27,7 +27,7 @@ namespace TestCipher
         [InlineData("--==--:::::А", "--==--:::::Я")]
         public void Decode(string str, string expectStr)
         {
-            var decryption = new BCipher();
+            var decryption = new LettersReverseCipher();
 
             var decryptionStr = decryption.Decode(str);
 
@@ -41,7 +41,7 @@ namespace TestCipher
         [InlineData("--==--:::::Говорун_ГО-ГО")]
         public void Encode_Then_Decode(string expectStr)
         {
-            var coder = new BCipher();
+            var coder = new LettersReverseCipher();
 
             var encryptionStr = coder.Encode(expectStr);
             var decryptionStr = coder.Decode(encryptionStr);
@@ -53,7 +53,7 @@ namespace TestCipher
         [InlineData(null)]
         public void Null_String_Coder(string nullStr)
         {
-            var coder = new BCipher();
+            var coder = new LettersReverseCipher();
 
             Assert.Throws<ArgumentNullException>(() => coder.Encode(nullStr));
         }
@@ -62,7 +62,7 @@ namespace TestCipher
         [InlineData("")]
         public void Empty_String_Coder(string nullStr)
         {
-            var coder = new ACipher();
+            var coder = new NextLetterCipher();
 
             Assert.Throws<ArgumentException>(() => coder.Encode(nullStr));
         }

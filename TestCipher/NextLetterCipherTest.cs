@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TestCipher
 {
-    public class ACipherTest
+    public class NextLetterCipherTest
     {
         [Theory]
         [InlineData("Крот", "Лспу")]
@@ -14,7 +14,7 @@ namespace TestCipher
         [InlineData("--==--:::::А", "--==--:::::Б")]
         public void Encode(string str, string expectStr)
         {
-            var encryptionStr = new ACipher().Encode(str);
+            var encryptionStr = new NextLetterCipher().Encode(str);
             Assert.Equal(expectStr, encryptionStr);
         }
 
@@ -26,7 +26,7 @@ namespace TestCipher
         [InlineData("--==--:::::Б", "--==--:::::А")]
         public void Decode(string str, string expectStr)
         {
-            var decryptionStr = new ACipher().Decode(str);
+            var decryptionStr = new NextLetterCipher().Decode(str);
             Assert.Equal(expectStr, decryptionStr);
         }
 
@@ -37,8 +37,8 @@ namespace TestCipher
         [InlineData("--==--::::::Кол!")]
         public void Encode_Then_Decode(string expectStr)
         {
-            var encryptionStr = new ACipher().Decode(expectStr);
-            var decryptionStr = new ACipher().Encode(encryptionStr);
+            var encryptionStr = new NextLetterCipher().Decode(expectStr);
+            var decryptionStr = new NextLetterCipher().Encode(encryptionStr);
             Assert.Equal(expectStr, decryptionStr);
         }
 
@@ -46,7 +46,7 @@ namespace TestCipher
         [InlineData(null)]
         public void Null_String_Coder(string nullStr)
         {
-            var coder = new ACipher();
+            var coder = new NextLetterCipher();
 
             Assert.Throws<ArgumentNullException>(() => coder.Encode(nullStr));
         }
@@ -55,7 +55,7 @@ namespace TestCipher
         [InlineData("")]
         public void Empty_String_Coder(string nullStr)
         {
-            var coder = new ACipher();
+            var coder = new NextLetterCipher();
 
             Assert.Throws<ArgumentException>(() => coder.Encode(nullStr));
         }
