@@ -44,3 +44,9 @@ var encoderStrB = bCipher.Encode(str);
 Console.WriteLine(encoderStrB);
 var decoderStrB = bCipher.Decode(encoderStrB);
 Console.WriteLine(decoderStrB);
+
+var cipherList = new CombinedСipher(new List<ICipher> { new LettersReverseCipher(), new LettersReverseCipher(), new NextLetterCipher() });
+var strCipherEncode = cipherList.Encode(str);
+Console.WriteLine(strCipherEncode);
+var strCipherDecode = cipherList.Decode(strCipherEncode);
+Console.WriteLine(strCipherDecode);

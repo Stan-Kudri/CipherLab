@@ -2,36 +2,29 @@
 {
     public class CombinedСipher : ICipher
     {
-        private readonly ICipher _firstCipher;
-        private readonly ICipher _secondCipher;
+        private List<ICipher> cipherList;
 
-        public CombinedСipher(CombineEncryptors type)
+        public CombinedСipher(List<ICipher> list)
         {
-            switch (type)
-            {
-                case CombineEncryptors.ReverseAndNextLetter:
-                    _firstCipher = new LettersReverseCipher();
-                    _secondCipher = new NextLetterCipher();
-                    break;
-                case CombineEncryptors.NextLetterAndReverse:
-                    _firstCipher = new NextLetterCipher();
-                    _secondCipher = new LettersReverseCipher();
-                    break;
-            }
+            if (list == null)
+                throw new ArgumentNullException("list");
+            cipherList = new List<ICipher>(list);
         }
 
         public string Decode(string decodeStr)
         {
-            var str = _secondCipher.Encode(decodeStr);
+            foreach (ICipher cipher in cipherList)
+                decodeStr = cipher.Decode(decodeStr);
 
-            return _firstCipher.Encode(str);
+            return decodeStr;
         }
 
         public string Encode(string encodeStr)
         {
-            var str = _firstCipher.Encode(encodeStr);
+            foreach (ICipher cipher in cipherList)
+                encodeStr = cipher.Encode(encodeStr);
 
-            return _secondCipher.Encode(str);
+            return encodeStr;
         }
     }
 }

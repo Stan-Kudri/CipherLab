@@ -1,6 +1,6 @@
 ﻿namespace CipherLab
 {
-    interface ICipher
+    public interface ICipher
     {
         public string Encode(string encodeStr);
 
