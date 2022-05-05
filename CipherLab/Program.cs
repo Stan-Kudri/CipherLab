@@ -50,3 +50,10 @@ var strCipherEncode = cipherList.Encode(str);
 Console.WriteLine(strCipherEncode);
 var strCipherDecode = cipherList.Decode(strCipherEncode);
 Console.WriteLine(strCipherDecode);
+Console.WriteLine();
+
+var morseCoder = new MorseCodeCipher();
+var morseEncode = morseCoder.Encode(str);
+Console.WriteLine(morseEncode);
+var morseDecode = morseCoder.Decode(morseEncode);
+Console.WriteLine(morseDecode);

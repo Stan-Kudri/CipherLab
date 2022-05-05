@@ -4,7 +4,7 @@
     {
         private List<ICipher> cipherList;
 
-        public CombinedСipher(List<ICipher> list)
+        public CombinedСipher(IReadOnlyCollection<ICipher> list)
         {
             if (list == null)
                 throw new ArgumentNullException("list");
