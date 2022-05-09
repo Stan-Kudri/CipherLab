@@ -57,3 +57,11 @@ var morseEncode = morseCoder.Encode(str);
 Console.WriteLine(morseEncode);
 var morseDecode = morseCoder.Decode(morseEncode);
 Console.WriteLine(morseDecode);
+
+Console.WriteLine();
+var caesarCoder = new CaesarСipher(1);
+var caesarEncode = caesarCoder.Encode(str);
+Console.WriteLine(caesarEncode);
+var caesarDecode = caesarCoder.Decode(caesarEncode);
+Console.WriteLine(caesarDecode);
+
