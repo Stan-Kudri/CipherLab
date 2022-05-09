@@ -65,3 +65,11 @@ Console.WriteLine(caesarEncode);
 var caesarDecode = caesarCoder.Decode(caesarEncode);
 Console.WriteLine(caesarDecode);
 
+Console.WriteLine();
+var digitalCoder = new DigitalCipher();
+var digitalEncode = digitalCoder.Encode(str);
+Console.WriteLine(digitalEncode);
+var digitalDecode = digitalCoder.Decode(digitalEncode);
+Console.WriteLine(digitalDecode);
+
+
