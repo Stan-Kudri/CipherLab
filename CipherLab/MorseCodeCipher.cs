@@ -6,7 +6,7 @@ namespace CipherLab
     {
         private const string EncryptionDelimiter = "$$$";
 
-        private static readonly Dictionary<char, string> MorseEnCode = new Dictionary<char, string>()
+        private static readonly BidirectionalDictionary<char, string> BiDictionary = new BidirectionalDictionary<char, string>()
         {
             {'А', "._"},
             {'Б', "_..."},
@@ -42,42 +42,6 @@ namespace CipherLab
             {'Я', "._._"},
         };
 
-        private static readonly Dictionary<string, char> MorseDeCode = new Dictionary<string, char>()
-        {
-            {"._",'А'},
-            {"_...",'Б'},
-            {".__",'В'},
-            {"__.",'Г'},
-            {"_..",'Д'},
-            {".",'Е'},
-            {"..._",'Ж'},
-            {"__..",'З'},
-            {"..",'И'},
-            {".___",'Й'},
-            {"_._",'К'},
-            {"._..",'Л'},
-            {"__",'М'},
-            {"_.",'Н'},
-            {"___",'О'},
-            {".__.",'П'},
-            {"._.",'Р'},
-            {"...",'С'},
-            {"_",'Т'},
-            {".._",'У'},
-            {".._.",'Ф'},
-            {"....",'Х'},
-            {"_._.",'Ц'},
-            {"___.",'Ч'},
-            {"____",'Ш'},
-            {"__._",'Щ'},
-            {".__._.",'Ъ'},
-            {"_.__",'Ы'},
-            {"_.._",'Ь'},
-            {".._..",'Э'},
-            {"..__",'Ю'},
-            {"._._",'Я'},
-        };
-
         public string Decode(string decodeStr)
         {
             if (decodeStr == null)
@@ -90,7 +54,7 @@ namespace CipherLab
             var array = decodeStr.Split(EncryptionDelimiter);
             foreach (var element in array)
             {
-                if (MorseDeCode.TryGetValue(element, out char letterCipher))
+                if (BiDictionary.TryGetValue(element, out char letterCipher))
                 {
                     cipherStr.Append(letterCipher);
                 }
@@ -113,7 +77,7 @@ namespace CipherLab
             var index = 0;
             foreach (var letter in encodeStr)
             {
-                if (MorseEnCode.TryGetValue(letter, out var strCipher))
+                if (BiDictionary.TryGetValue(letter, out var strCipher))
                 {
                     arrayStr[index] = strCipher;
                 }

@@ -23,9 +23,10 @@
             var arrayStr = decodeStr.ToCharArray();
             for (var i = 0; i < decodeStr.Length; i++)
             {
-                if (char.ToUpper(arrayStr[i]) >= StartBigLetter && char.ToUpper(arrayStr[i]) <= EndBigLetter)
+                var letter = char.ToUpper(arrayStr[i]);
+                if (letter >= StartBigLetter && letter <= EndBigLetter)
                 {
-                    arrayStr[i] = DecryptionChar(char.ToUpper(arrayStr[i]));
+                    arrayStr[i] = Decryption(letter);
                 }
             }
             return new string(arrayStr);
@@ -40,15 +41,16 @@
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
-                if (char.ToUpper(arrayStr[i]) >= StartBigLetter && char.ToUpper(arrayStr[i]) <= EndBigLetter)
+                var letter = char.ToUpper(arrayStr[i]);
+                if (letter >= StartBigLetter && letter <= EndBigLetter)
                 {
-                    arrayStr[i] = EncryptionChar(char.ToUpper(arrayStr[i]));
+                    arrayStr[i] = Encryption(letter);
                 }
             }
             return new string(arrayStr);
         }
 
-        private char EncryptionChar(char letter)
+        private char Encryption(char letter)
         {
             if (letter + _stepCipher <= EndBigLetter)
                 return Convert.ToChar(letter + _stepCipher);
@@ -56,7 +58,7 @@
                 return Convert.ToChar(StartBigLetter - EndBigLetter + _stepCipher + letter - 1);
         }
 
-        private char DecryptionChar(char letter)
+        private char Decryption(char letter)
         {
             if (letter - _stepCipher >= StartBigLetter)
                 return Convert.ToChar(letter - _stepCipher);

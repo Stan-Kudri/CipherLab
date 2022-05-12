@@ -7,9 +7,6 @@ namespace CipherLab
         private const string EncryptionDelimiter = "$$$";
 
         private const int StartBigLetter = 'А';
-        private const int EndBigLetter = 'Я';
-
-        private const int StartSmallLetter = 'а';
         private const int EndSmallLetter = 'я';
 
         public string Decode(string decodeStr)
@@ -24,10 +21,10 @@ namespace CipherLab
             var array = decodeStr.Split(EncryptionDelimiter);
             foreach (var element in array)
             {
-                if (Int32.TryParse(element, out int value))
+                if (int.TryParse(element, out int value))
                 {
                     if (value >= StartBigLetter && value <= EndSmallLetter)
-                        cipherStr.Append(Convert.ToChar(Int32.Parse(element)));
+                        cipherStr.Append(Convert.ToChar(value));
                     else
                         cipherStr.Append(value);
                 }
@@ -36,7 +33,6 @@ namespace CipherLab
                     cipherStr.Append(element);
                 }
             }
-
             return cipherStr.ToString();
         }
 
@@ -50,14 +46,9 @@ namespace CipherLab
             var index = 0;
             foreach (var letter in encodeStr)
             {
-                if (letter >= StartBigLetter && letter <= EndSmallLetter)
-                {
-                    arrayStr[index] = Convert.ToInt64(letter).ToString();
-                }
-                else
-                {
-                    arrayStr[index] = letter.ToString();
-                }
+                arrayStr[index] = letter >= StartBigLetter && letter <= EndSmallLetter ?
+                                                                                        arrayStr[index] = Convert.ToInt32(letter).ToString() :
+                                                                                        arrayStr[index] = letter.ToString();
                 index++;
             }
             return string.Join(EncryptionDelimiter, arrayStr); ;
