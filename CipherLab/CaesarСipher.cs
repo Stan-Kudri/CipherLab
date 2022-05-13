@@ -20,11 +20,12 @@
                 throw new ArgumentNullException("Строка нулевая!");
             if (decodeStr.Length == 0)
                 throw new ArgumentException("Строка не верна!");
+
             var arrayStr = decodeStr.ToCharArray();
             for (var i = 0; i < decodeStr.Length; i++)
             {
                 var letter = char.ToUpper(arrayStr[i]);
-                if (letter >= StartBigLetter && letter <= EndBigLetter)
+                if (ChackLetter(letter))
                 {
                     arrayStr[i] = Decryption(letter);
                 }
@@ -38,11 +39,12 @@
                 throw new ArgumentNullException("Строка нулевая!");
             if (encodeStr.Length == 0)
                 throw new ArgumentException("Строка не верна!");
+
             var arrayStr = encodeStr.ToCharArray();
             for (var i = 0; i < encodeStr.Length; i++)
             {
                 var letter = char.ToUpper(arrayStr[i]);
-                if (letter >= StartBigLetter && letter <= EndBigLetter)
+                if (ChackLetter(letter))
                 {
                     arrayStr[i] = Encryption(letter);
                 }
@@ -53,17 +55,30 @@
         private char Encryption(char letter)
         {
             if (letter + _stepCipher <= EndBigLetter)
+            {
                 return Convert.ToChar(letter + _stepCipher);
+            }
             else
+            {
                 return Convert.ToChar(StartBigLetter - EndBigLetter + _stepCipher + letter - 1);
+            }
         }
 
         private char Decryption(char letter)
         {
             if (letter - _stepCipher >= StartBigLetter)
+            {
                 return Convert.ToChar(letter - _stepCipher);
+            }
             else
+            {
                 return Convert.ToChar(EndBigLetter + letter - StartBigLetter - _stepCipher + 1);
+            }
+        }
+
+        private bool ChackLetter(char letter)
+        {
+            return letter >= StartBigLetter && letter <= EndBigLetter;
         }
     }
 }

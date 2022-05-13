@@ -18,22 +18,29 @@ namespace CipherLab
 
         public void Add(TFirst t1, TSecond t2)
         {
-            _forward.Add(t1, t2);
-            _reverse.Add(t2, t1);
+            if (!_forward.ContainsKey(t1) && !_reverse.ContainsKey(t2))
+            {
+                _forward.Add(t1, t2);
+                _reverse.Add(t2, t1);
+            }
         }
 
         public void Remove(TFirst t1)
         {
-            TSecond revKey = Forward[t1];
-            _forward.Remove(t1);
-            _reverse.Remove(revKey);
+            if (_forward.TryGetValue(t1, out var t2))
+            {
+                _forward.Remove(t1);
+                _reverse.Remove(t2);
+            }
         }
 
         public void Remove(TSecond t2)
         {
-            TFirst forwardKey = Reverse[t2];
-            _reverse.Remove(t2);
-            _forward.Remove(forwardKey);
+            if (_reverse.TryGetValue(t2, out var t1))
+            {
+                _reverse.Remove(t2);
+                _forward.Remove(t1);
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -69,9 +76,9 @@ namespace CipherLab
 
         public bool TryGetValue(TFirst key, out TSecond value)
         {
-            if (Forward.Contains(key))
+            if (_forward.TryGetValue(key, out var second))
             {
-                value = Forward[key];
+                value = second;
                 return true;
             }
             value = default(TSecond);
@@ -80,9 +87,9 @@ namespace CipherLab
 
         public bool TryGetValue(TSecond key, out TFirst value)
         {
-            if (Reverse.Contains(key))
+            if (_reverse.TryGetValue(key, out var first))
             {
-                value = Reverse[key];
+                value = first;
                 return true;
             }
             value = default(TFirst);

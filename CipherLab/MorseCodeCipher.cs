@@ -54,7 +54,7 @@ namespace CipherLab
             var array = decodeStr.Split(EncryptionDelimiter);
             foreach (var element in array)
             {
-                if (BiDictionary.TryGetValue(element, out char letterCipher))
+                if (BiDictionary.TryGetValue(element, out var letterCipher))
                 {
                     cipherStr.Append(letterCipher);
                 }

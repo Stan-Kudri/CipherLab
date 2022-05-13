@@ -72,4 +72,20 @@ Console.WriteLine(digitalEncode);
 var digitalDecode = digitalCoder.Decode(digitalEncode);
 Console.WriteLine(digitalDecode);
 
+var biDiction = new BidirectionalDictionary<int, int>()
+{
+    {1, 2 },
+    {2, 3 },
+    {2, 1 },
+    {1, 5 },
+    {4, 7 },
+};
+
+foreach (var i in biDiction)
+{
+    Console.WriteLine();
+    Console.WriteLine(i.Key + "  -  " + i.Value);
+
+}
+
 

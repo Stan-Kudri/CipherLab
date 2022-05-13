@@ -47,8 +47,8 @@ namespace CipherLab
             foreach (var letter in encodeStr)
             {
                 arrayStr[index] = letter >= StartBigLetter && letter <= EndSmallLetter ?
-                                                                                        arrayStr[index] = Convert.ToInt32(letter).ToString() :
-                                                                                        arrayStr[index] = letter.ToString();
+                                                                                        Convert.ToInt32(letter).ToString() :
+                                                                                        letter.ToString();
                 index++;
             }
             return string.Join(EncryptionDelimiter, arrayStr); ;
