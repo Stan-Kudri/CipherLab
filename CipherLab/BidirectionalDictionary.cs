@@ -23,6 +23,7 @@ namespace CipherLab
                 _forward.Add(t1, t2);
                 _reverse.Add(t2, t1);
             }
+            //Добавление элементов в словарь не происходит, если один из ключей/значений уже существует в словаре.
         }
 
         public void Remove(TFirst t1)
@@ -64,7 +65,13 @@ namespace CipherLab
 
             public T1 this[T2 index]
             {
-                get { return _dictionary[index]; }
+                get
+                {
+                    if (!_dictionary.ContainsKey(index))
+                        throw new Exception("Значения с таким ключем нет!");
+
+                    return _dictionary[index];
+                }
                 set { _dictionary[index] = value; }
             }
 

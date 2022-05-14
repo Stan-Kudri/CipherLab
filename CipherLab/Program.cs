@@ -88,4 +88,8 @@ foreach (var i in biDiction)
 
 }
 
+Console.WriteLine("/n");
+Console.WriteLine(biDiction.Forward[1] + "  --  " + biDiction.Forward[2]);
+Console.WriteLine(biDiction.Reverse[1] + "  --  " + biDiction.Reverse[3]);
+
 
