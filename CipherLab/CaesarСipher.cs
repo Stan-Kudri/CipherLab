@@ -25,7 +25,7 @@
             for (var i = 0; i < decodeStr.Length; i++)
             {
                 var letter = char.ToUpper(arrayStr[i]);
-                if (ChackLetter(letter))
+                if (CheckLetter(letter))
                 {
                     arrayStr[i] = Decryption(letter);
                 }
@@ -44,7 +44,7 @@
             for (var i = 0; i < encodeStr.Length; i++)
             {
                 var letter = char.ToUpper(arrayStr[i]);
-                if (ChackLetter(letter))
+                if (CheckLetter(letter))
                 {
                     arrayStr[i] = Encryption(letter);
                 }
@@ -76,7 +76,7 @@
             }
         }
 
-        private bool ChackLetter(char letter)
+        private bool CheckLetter(char letter)
         {
             return letter >= StartBigLetter && letter <= EndBigLetter;
         }

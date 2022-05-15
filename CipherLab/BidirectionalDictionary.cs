@@ -67,10 +67,10 @@ namespace CipherLab
             {
                 get
                 {
-                    if (!_dictionary.ContainsKey(index))
+                    if (!_dictionary.TryGetValue(index, out var t))
                         throw new Exception("Значения с таким ключем нет!");
 
-                    return _dictionary[index];
+                    return t;
                 }
                 set { _dictionary[index] = value; }
             }
@@ -81,26 +81,14 @@ namespace CipherLab
             }
         }
 
-        public bool TryGetValue(TFirst key, out TSecond value)
+        public bool TryGetValue(TFirst key, out TSecond? value)
         {
-            if (_forward.TryGetValue(key, out var second))
-            {
-                value = second;
-                return true;
-            }
-            value = default(TSecond);
-            return false;
+            return _forward.TryGetValue(key, out value);
         }
 
-        public bool TryGetValue(TSecond key, out TFirst value)
+        public bool TryGetValue(TSecond key, out TFirst? value)
         {
-            if (_reverse.TryGetValue(key, out var first))
-            {
-                value = first;
-                return true;
-            }
-            value = default(TFirst);
-            return false;
+            return _reverse.TryGetValue(key, out value);
         }
     }
 }
